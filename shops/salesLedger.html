@@ -1,0 +1,46 @@
+<html>
+  <body>
+    <div>購入された数は...</div>
+    <button onclick=" yomikomi() ">購入リスト</button>
+    <div id="records"></div>
+  </body>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+   https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyDGwlYu2MGy6OQbKVhYvfsEXWLAP3UGqCk",
+      authDomain: "kqkqkq-ff9c6.firebaseapp.com",
+      databaseURL: "https://kqkqkq-ff9c6.firebaseio.com",
+      projectId: "kqkqkq-ff9c6",
+      storageBucket: "kqkqkq-ff9c6.appspot.com",
+      messagingSenderId: "980417854721",
+      appId: "1:980417854721:web:89579ca1a50f0705286f00",
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  </script>
+  <script>
+    function yomikomi() {
+      //データを取ってくる
+      firebase
+        .firestore()
+        .collection("salesLedger")
+        .get()
+        .then((ss) => {
+          const records = ss.docs.map((doc) => doc.data());
+          records.sort((r1, r2) => {
+            if (r1.created < r2.created) return 1;
+            if (r1.created === r2.created) return 0;
+            if (r1.created > r2.created) return -1;
+          });
+          document.getElementById("records").innerText = records
+            .map((r) => `${r.category} ${r.item} ${r.created}`)
+            .join("\n");
+        });
+    }
+  </script>
+</html>

@@ -1,0 +1,56 @@
+<html>
+  <head>
+    <meta charset="utr-8" />
+  </head>
+  <body>
+    <h2>データを入力してください</h2>
+    <input type="text" id="moji" />
+    <button onclick="touroku()">登録</button>
+    <button onclick="yomikomi()">読み込み</button>
+  </body>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyDGwlYu2MGy6OQbKVhYvfsEXWLAP3UGqCk",
+      authDomain: "kqkqkq-ff9c6.firebaseapp.com",
+      databaseURL: "https://kqkqkq-ff9c6.firebaseio.com",
+      projectId: "kqkqkq-ff9c6",
+      storageBucket: "kqkqkq-ff9c6.appspot.com",
+      messagingSenderId: "980417854721",
+      appId: "1:980417854721:web:89579ca1a50f0705286f00",
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  </script>
+  <script>
+    function touroku() {
+      let inputMoji = document.getElementById("moji").value;
+      window.alert(`入力されたのは${inputMoji}でしたぁ`);
+      firebase
+        .firestore()
+        .collection("names")
+        .doc("a")
+        .set({ input: inputMoji });
+    }
+    function yomikomi() {
+      //データを取ってくる
+      firebase
+        .firestore()
+        .collection("names")
+        .doc("a")
+        .get()
+        .then((ss) => {
+          if (ss.exists) {
+            window.alert(`保存されたのは${ss.data().input}でしたぁ`);
+          } else {
+            window.alert("データの読み込みに失敗しました");
+          }
+        });
+    }
+  </script>
+</html>

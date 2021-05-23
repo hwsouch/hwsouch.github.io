@@ -1,34 +1,44 @@
+F
 <html>
-    <body>
-        <div style="font-size: 40px">
-             誕生日おめでとうございました。
-
-        </div>  
-        <img  width="85" height="120" src=ボタン.png id="doorbutton" onclick="toggle()">
-        <img  width="853" height="480" src=DSC03815.JPG id="pict1">      
-        <img  width="85" height="120" src=牡丹.png id="105doorbutton" onclick="toggle0()"> 
-        <iframe  id="SOCHvideo" width="853" height="480" src="https://www.youtube.com/embed/ROVKNYJ-q7Q" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-        </iframe>
-    
-    </body> 
-<script>
-    function toggle ( ) {
-    
-        document. getElementById("pict1").hidden =! document. getElementById("pict1").hidden
-    
-    
+  <body>
+    <div style="font-size: 40px">誕生日おめでとうございました。</div>
+    <img
+      width="85"
+      height="120"
+      src="ボタン.png"
+      id="doorbutton"
+      onclick="toggle()"
+    />
+    <img width="853" height="480" src="DSC03815.JPG" id="pict1" />
+    <img
+      width="85"
+      height="120"
+      src="牡丹.png"
+      id="105doorbutton"
+      onclick="toggle0()"
+    />
+    <iframe
+      id="SOCHvideo"
+      width="853"
+      height="480"
+      src="https://www.youtube.com/embed/ROVKNYJ-q7Q"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+    >
+    </iframe>
+  </body>
+  <script>
+    function toggle() {
+      document.getElementById("pict1").hidden = !document.getElementById(
+        "pict1"
+      ).hidden;
     }
-        
-    function toggle0 ( ) {
-        
-        
-        
-               document. getElementById("SOCHvideo").hidden =! document. getElementById("SOCHvideo").hidden
 
+    function toggle0() {
+      document.getElementById("SOCHvideo").hidden = !document.getElementById(
+        "SOCHvideo"
+      ).hidden;
     }
-    
-    
-    </Script>
-
-
+  </script>
 </html>

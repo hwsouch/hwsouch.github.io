@@ -1,0 +1,91 @@
+<html>
+  <body>
+    <h1>美味しい美味しい本当に美味しいご飯の紹介</h1>
+    <div
+      id="mojiShakkin"
+      hidden
+      style="background-color: white; height: 100px; font-size: 40px"
+    >
+      購入できましたね!!あなたには借金ができることでしょう...
+    </div>
+    <div id="soutrain"></div>
+    <button id="button2">画像</button>
+    <img id="image3" />
+    <button id="button3">購入????</button>
+    <iframe
+      width="435"
+      height="240"
+      src="https://www.youtube.com/embed/JePagyJ7fFQ"
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+    >
+    </iframe>
+    <div>
+      <img id="image" />
+      <span id="itemPrice"></span>円
+    </div>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyDGwlYu2MGy6OQbKVhYvfsEXWLAP3UGqCk",
+        authDomain: "kqkqkq-ff9c6.firebaseapp.com",
+        databaseURL: "https://kqkqkq-ff9c6.firebaseio.com",
+        projectId: "kqkqkq-ff9c6",
+        storageBucket: "kqkqkq-ff9c6.appspot.com",
+        messagingSenderId: "980417854721",
+        appId: "1:980417854721:web:89579ca1a50f0705286f00",
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+    </script>
+    <script type="text/javascript">
+      var a = "このお米1g";
+      var b = " 99万9999円";
+      document.getElementById("soutrain").innerHTML = a + b;
+      document.getElementById("button2").onclick = function () {
+        document
+          .getElementById("image3")
+          .setAttribute(
+            "src",
+            "https://prtimes.jp/i/24056/2/resize/d24056-2-769433-3.jpg"
+          );
+      };
+      document.getElementById("button3").onclick = function () {
+        document.getElementById(
+          "mojiShakkin"
+        ).hidden = !document.getElementById("mojiShakkin").hidden;
+        touroku();
+      };
+      function touroku() {
+        firebase.firestore().collection("salesLedger").add({
+          item: "バイデンご飯",
+          category: "bread",
+          created: new Date().toISOString(),
+        }).then(()=>{
+          window.alert("購入できましたね!!借金もできましたね...")
+        }).catch(e=>{
+          window.alert("購入に失敗しましたSorry")
+        });
+      }
+    </script>
+    <script>
+      fetch(
+        "https://app.rakuten.co.jp/services/api/IchibaItem/Search/20170706?applicationId=1098155109622585266&keyword=あきたこまち"
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          const url = data.Items[0].Item.mediumImageUrls[2].imageUrl;
+          document.getElementById("image").src = url;
+          const price = data.Items[0].Item.itemPrice;
+          document.getElementById("itemPrice").innerText = price;
+        });
+    </script>
+  </body>
+</html>
